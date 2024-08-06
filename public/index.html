@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JIV</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div
+      class="text-center relative pt-20 min-h-screen bg-gray-100 items-center justify-center"
+    >
+      <div class="">
+        <h1 class="m-10 text-2xl"><b>DepWith App</b></h1>
+      </div>
+      <div>
+        <h2 class="m-6 text-xl balance">
+          Account Balance: KSH <span><b>0</b></span>
+        </h2>
+      </div>
+      <div>
+        <input type="number" placeholder="0" class="m-4 p-2 w-56 amount" />
+      </div>
+      <div>
+        <button class="bg-green-400 p-1 text-white deposit w-28">
+          Deposit
+        </button>
+        <button class="bg-orange-500 p-1 text-white w-28 withdraw">
+          Withdraw
+        </button>
+      </div>
+      <div>
+        <h2 class="text-2xl mt-14"><b>Transactions</b></h2>
+      </div>
+      <div class="items-center justify-center flex mt-4 text-center">
+        <table class="">
+          <tr class="bg-gray-400">
+            <th class="p-3">Type</th>
+
+            <th>Amount</th>
+            <th>Date</th>
+          </tr>
+          <tr class="" id="content">
+            <td>Deposit</td>
+            <td>1000</td>
+            <td>08/06/2024</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
