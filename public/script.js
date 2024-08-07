@@ -1,22 +1,28 @@
 const deposit = document.querySelector(".deposit");
-const withdraw = document.getElementsByClassName("withdraw");
+const withdraw = document.querySelector(".withdraw");
 const amount = document.querySelector(".amount");
-const balance = document.getElementsByClassName("balance");
+const balance = document.querySelector(".balance");
+const cash = document.querySelector(".cash");
+let oriBal = 0;
+
+// localStorage.setItem("Type", "Amount", "Date");
+
+// document.getElementsByClassName("tableContent").innerHTML =
+//   localStorage.getItem("Type", "Amount", "Date");
+
+localStorage.setItem("Amount", JSON.stringify("tableContent"));
+console.log();
 
 deposit.addEventListener("click", addDeposit);
 // console.log(deposit);
+withdraw.addEventListener("click", addWithdraw);
+
+function changeBalance() {
+  let bal = document.querySelector(".amount").value;
+  return parseFloat(bal);
+}
 
 function addDeposit(e) {
-  // let newDeposit = document.querySelector(".amount").value;
-  // let parent = document.querySelectorAll(".cash");
-  // parent.appendChild(newDeposit);9
-  // let tableData = document.createElement("tr");
-
-  // tableData.appendChild(newDeposit);
-  // let parent = document.querySelector("#content");
-  // newDeposit.appendChild(newDeposit);
-  // console.log(tableData);
-
   let depositData = document.querySelector(".deposit").textContent; //Getting content within the button
   // console.log(depositData);
 
@@ -34,6 +40,9 @@ function addDeposit(e) {
   // console.log(tableRow);
 
   let tableData = document.createElement("td");
+  if (tableData < 0) {
+    alert("Invalid");
+  }
   tableData.textContent = newDeposit; //Inserting data from input field to the tabledata created
 
   tableRow.appendChild(tableData); //Placing 'td' into 'tr'
@@ -47,6 +56,46 @@ function addDeposit(e) {
   let body = document.querySelector("tbody");
   body.appendChild(tableRow);
 
-  // let amount = document.querySelector(".cash");
-  // amount.appendchild(tableRow);
+  const depAmt = changeBalance();
+  if (isNaN(depAmt) || depAmt <= 0) {
+    alert("Invalid Amount");
+    return;
+  }
+  oriBal += depAmt; //Increments value of the balance
+  cash.textContent = `${oriBal.toFixed(2)}`;
+}
+
+function addWithdraw(e) {
+  let newWithdraw = document.querySelector(".amount").value;
+  let tableRow = document.createElement("tr");
+  let tableData = document.createElement("td");
+
+  //Append data from withdraw button
+  let withdrawContent = document.querySelector(".withdraw").textContent;
+  let newContent = document.createElement("td");
+  newContent.textContent = withdrawContent;
+  tableRow.appendChild(newContent);
+  // console.log(tableRow);
+
+  tableData.textContent = newWithdraw;
+  tableRow.appendChild(tableData);
+  // console.log(tableRow);
+
+  //Add Date to Table
+  let today = new Date().toLocaleDateString();
+  let date = document.createElement("td");
+  date.textContent = today;
+  tableRow.appendChild(date);
+
+  //Adding data in input field to the table
+  let body = document.querySelector("tbody");
+  body.appendChild(tableRow);
+
+  const depAmt = changeBalance();
+  if (isNaN(depAmt) || depAmt <= 0) {
+    alert("Invalid Amount");
+    return;
+  }
+  oriBal -= depAmt;
+  cash.textContent = `${oriBal.toFixed(2)}`;
 }

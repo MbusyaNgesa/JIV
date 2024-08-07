@@ -19,25 +19,34 @@
         </h2>
       </div>
       <div>
-        <input type="number" placeholder="0" class="m-4 p-2 w-56 amount" />
+        <input
+          type="number"
+          placeholder="0"
+          class="m-4 p-2 w-56 amount border-black"
+        />
       </div>
       <div>
-        <button class="bg-green-400 p-1 text-white deposit w-28">
+        <button class="bg-green-400 p-1 text-white deposit w-28 mr-0">
           Deposit
         </button>
-        <button class="bg-orange-500 p-1 text-white w-28 withdraw">
+        <button class="bg-orange-500 p-1 text-white w-28 ml-0 withdraw">
           Withdraw
         </button>
       </div>
       <div>
         <h2 class="text-2xl mt-14"><b>Transactions</b></h2>
       </div>
-      <div class="items-center justify-center flex mt-4 text-center">
-        <table class="">
-          <th class="p-3 bg-gray-400">Type</th>
-          <th class="bg-gray-400">Amount</th>
-          <th class="bg-gray-400">Date</th>
-          <tbody>
+      <div class="mt-4 flex items-center justify-center">
+        <table class="text-center w-60 tableContent">
+          <thead class="bg-gray-400 m-4">
+            <tr>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+
+          <tbody class="">
             <tr class="" id="content">
               <td>Deposit</td>
               <td>1000</td>
