@@ -23,6 +23,7 @@ function changeBalance() {
 }
 
 function addDeposit(e) {
+  e.preventDefault();
   let depositData = document.querySelector(".deposit").textContent; //Getting content within the button
   // console.log(depositData);
 
@@ -40,9 +41,6 @@ function addDeposit(e) {
   // console.log(tableRow);
 
   let tableData = document.createElement("td");
-  if (tableData < 0) {
-    alert("Invalid");
-  }
   tableData.textContent = newDeposit; //Inserting data from input field to the tabledata created
 
   tableRow.appendChild(tableData); //Placing 'td' into 'tr'
@@ -63,12 +61,33 @@ function addDeposit(e) {
   }
   oriBal += depAmt; //Increments value of the balance
   cash.textContent = `${oriBal.toFixed(2)}`;
+
+  let x = document.getElementsByClassName("cash");
+
+  document.querySelector(".amount").value = ""; //Clears input field after depositing
 }
 
 function addWithdraw(e) {
+  e.preventDefault();
+
   let newWithdraw = document.querySelector(".amount").value;
   let tableRow = document.createElement("tr");
   let tableData = document.createElement("td");
+
+  const depAmt = changeBalance();
+  if (isNaN(depAmt) || depAmt <= 0) {
+    alert("Invalid Amount");
+    return;
+  }
+
+  if (oriBal < depAmt) {
+    alert("Insufficient Funds");
+    return;
+  } /* Logic of code is very important, we check if the balance and withdrawn
+  amount meet the set conditions, if not it will not add the balance to the table */
+
+  oriBal -= depAmt;
+  cash.textContent = `${oriBal.toFixed(2)}`;
 
   //Append data from withdraw button
   let withdrawContent = document.querySelector(".withdraw").textContent;
@@ -91,11 +110,5 @@ function addWithdraw(e) {
   let body = document.querySelector("tbody");
   body.appendChild(tableRow);
 
-  const depAmt = changeBalance();
-  if (isNaN(depAmt) || depAmt <= 0) {
-    alert("Invalid Amount");
-    return;
-  }
-  oriBal -= depAmt;
-  cash.textContent = `${oriBal.toFixed(2)}`;
+  document.querySelector(".amount").value = ""; //Clears input field after withdrawing
 }
